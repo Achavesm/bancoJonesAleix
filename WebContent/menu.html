@@ -1,0 +1,18 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.jsp"><fmt:message key="start"/></a></li>
+      <li><a href="jones.jsp"><fmt:message key="session"/></a></li>
+      <li><a href="registro.jsp"><fmt:message key="register"/></a></li>
+      <li><a href="update.jsp"><fmt:message key="update"/></a></li>
+      <li><a href="tarifas.jsp"><fmt:message key="rate"/></a></li>
+      <li><a href="seguro.jsp"><fmt:message key="insurance"/></a></li>
+    </ul>
+    <form class="navbar-form navbar-left">
+		<select id="language" name="language" onchange="submit()">
+			<option value="es" ${language == 'es' ? 'selected': '' } >Castellano</option>
+			<option value="ca" ${language == 'ca' ? 'selected': '' } >Catala</option>
+		</select>
+	</form>
+  </div>
+</nav>

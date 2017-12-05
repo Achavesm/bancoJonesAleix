@@ -42,11 +42,13 @@
 	<%@ include file="menu.html"%>
 	
 	<h3>hola <%=user %>, con dni <%=dni %> <%=sessionID %></h3>
-	<form method="POST" action=<%=response.encodeURL("LogoutServlet")%>>
+	<form method="POST" action="<%=response.encodeURL("ControllerServlet")%>">
+		<input type="hidden" name="action" value="logout">
 		<input type="submit" value="cerrar sesion">
 	</form>
 	<br>
-	<form method="POST" action="<%=response.encodeURL("ListAccountsServlet")%>">
+	<form method="POST" action="<%=response.encodeURL("ControllerServlet")%>">
+		<input type="hidden" name="action" value="listAccounts">
 		<input type="submit" value="Cuentas">
 	</form>
 </body>

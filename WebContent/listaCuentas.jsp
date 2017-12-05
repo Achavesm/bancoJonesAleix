@@ -62,7 +62,7 @@
 		for (Account account : accounts) {
 			String iban = account.getIban();
 			double balance = account.getSaldo();
-			%> <tbody><tr><td> <%=iban %> </td><td> <%=balance %></td><td style="width:150px;"><input type="button" value="Eliminar cuenta" onclick="location.href='DeleteAccountsServlet?iban=<%=iban %>'"></td><td style="width:150px;"><input type="button" value="Transacciones" onclick="location.href='ListTransactionsServlet?iban=<%=iban %>'"></td></tr></tbody> <%
+			%> <tbody><tr><td> <%=iban %> </td><td> <%=balance %></td><td style="width:170px;"><button onclick="location.href='ControllerServlet?iban=<%=iban %>&action=deleteAccount'">Eliminar Cuenta</button></td><td style="width:150px;"><button onclick="location.href='ControllerServlet?iban=<%=iban %>&action=detailsAccount'">Transacciones</button></td></tr></tbody> <%
 		}
 	%>
 	</table>

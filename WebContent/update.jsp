@@ -23,7 +23,8 @@
 <body>
 	<%@ include file="menu.html"%>
 	<div>
-		<form action="UpdateServlet" method="POST">
+		<form action="ControllerServlet" method="POST">
+			<input type="hidden" name="action" value="update">
 			<fmt:message key="name"/><br><input type="text" name="nameUpd"><br>
 			<fmt:message key="surname"/><br><input type="text" name="surnameUpd"><br>
 			DNI: <br><input type="text" name="dniUpd"><br>

@@ -10,9 +10,24 @@
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="resources/lang"/>
 <%
-	String iban = (String) request.getParameter("account");
-	System.out.println(iban);
-	List<Transaccion> listTransactions = TransaccionDAO.listaTransacciones(iban);
+	String iban = (String) request.getParameter("account");	
+	List<Transaccion> listTransactions = TransaccionesDAO.listaTransacciones(iban);
+	System.out.println(listTransactions.size());
+	String spageid=request.getParameter("page")==null?"1":request.getParameter("page");
+	int size = 10;
+	int pagina = Integer.parseInt(spageid);	
+	int ini = pagina==1?pagina-1:(pagina-1)*size;;
+	int fin = pagina*size;
+	List<Transaccion> sublist = null;	
+	int maxPage = listTransactions.size()/size;
+	if (listTransactions.size()%size != 0) {
+		maxPage++;
+	}
+	if (pagina != maxPage) {
+		sublist = listTransactions.subList(ini, fin);	
+	} else {		
+		sublist = listTransactions.subList(ini, listTransactions.size());
+	}
 %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -41,7 +56,7 @@
 	<div>		
 	<table><thead><tr><th>ID</th><th>Fecha</th><th>Cantidad</th><th>Origen</th><th>Destino</th></tr></thead>
 	<%
-		for (Transaccion t : listTransactions) {
+		for (Transaccion t : sublist) {
 			long id = t.getId();
 			String fecha = t.getFecha();
 			double importe = t.getImporte();
@@ -55,5 +70,12 @@
 	<form method="POST" action="insertarTransaccion.jsp">
 		<input type="submit" value="Nueva transacción">
 </form>
+<%
+	for (int i = 1; i <= maxPage; i++) {
+        %>
+        	<a href="listaTransacciones.jsp?account=<%=iban %>&page=<%=i%>"><%=i%></a>
+        <%
+	}
+%>
 </body>
 </html>

@@ -4,8 +4,6 @@ import java.io.IOException;
 import beans.Account;
 import beans.Cliente;
 
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +34,7 @@ public class ListTransactionsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String iban = (String) request.getParameter("iban");
-		response.sendRedirect("listaTransacciones.jsp?account=" + iban);
+		response.sendRedirect("listaTransacciones.jsp?account=" + iban + "&page=1");
 		
 	}
 
